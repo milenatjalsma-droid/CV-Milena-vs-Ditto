@@ -1,0 +1,607 @@
+CV Milena Tjalsma - Atabix
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Milena Tjalsma-Otten — CV Intro</title>
+
+<style>
+:root{
+    --accent:#0b63d6;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+}
+body{
+    margin:0;
+    background:var(--bg);
+    color:#111827;
+    font-family: Inter,-apple-system,system-ui,sans-serif;
+    padding:28px;
+    -webkit-font-smoothing:antialiased;
+}
+.container{
+    max-width:900px;
+    margin:0 auto;
+    background:var(--card);
+    padding:26px;
+    border-radius:12px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.06);
+}
+
+/* Header */
+header{
+    display:flex;
+    gap:18px;
+    align-items:center;
+
+}/* FOTO */
+.profile{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--accent);
+}
+.title{
+    font-size:20px;
+    font-weight:700;
+    color:var(--accent);
+}
+.subtitle{
+    font-size:14px;
+    color:var(--muted);
+    margin-top:4px;
+    max-width:520px;
+}
+.actions{
+    margin-left:auto;
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+.btn{
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+.btn-lang{
+    background:#e5e7eb;
+    color:#374151;
+}
+.btn-lang.active{
+    background:var(--accent);
+    color:#ffffff;
+}
+.btn-start{
+    background:var(--accent);
+    color:#ffffff;
+}
+
+/* Typing area */
+.typed-text{
+    display:none;
+    margin-top:26px;
+    white-space:pre-wrap;
+    font-family:'Courier New', monospace;
+    font-size:17px;
+    line-height:1.55;
+    color:#0f172a;
+}
+
+/* Sections (opleidingen & werkervaring) */
+.info-section{
+    margin-top:30px;
+    opacity:0;
+    transform:translateX(40px);
+    pointer-events:none;
+}
+.info-section.visible{
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+    transition:opacity .6s ease-out, transform .6s ease-out;
+}
+.info-section h2{
+    margin:0 0 10px;
+    font-size:18px;
+    color:#111827;
+}
+.edu-item{
+    font-size:15px;
+    margin-bottom:4px;
+}
+
+/* Experience cards */
+.exp-card{
+    opacity:0;
+    transform:translateX(40px);
+    background:#f1f5f9;
+    border-radius:10px;
+    padding:12px 14px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(15,23,42,0.08);
+}
+.exp-card.visible{
+    opacity:1;
+    transform:translateX(0);
+    transition:opacity .6s ease-out, transform .6s ease-out;
+}
+.exp-period{
+    font-size:13px;
+    font-weight:600;
+    color:var(--muted);
+}
+.exp-title{
+    font-size:15px;
+    font-weight:700;
+    margin-top:2px;
+}
+.exp-company{
+    font-size:14px;
+    color:#374151;
+    margin-bottom:4px;
+}
+.exp-desc{
+    font-size:14px;
+    color:#111827;
+}
+
+/* JA/NEE + contact */
+#conversationBlock{
+    display:none;
+    margin-top:32px;
+    font-size:18px;
+}
+#contactInfo{
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    background:#eef2f6;
+    border-radius:8px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.10);
+    font-size:16px;
+}
+</style>
+</head>
+<body>
+<div class="container" role="main">
+
+    <header>
+        
+<img src="images/milena1.png" class="profile">
+
+        <div>
+            <div class="title">Milena Tjalsma-Otten</div>
+            <div class="subtitle">
+                Recruiter · Talent Acquisition · Sourcing Specialist · Cyber Security &amp; Tech · Niche recruitment · Leadership · Entrepreneurship
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="btnNL" class="btn btn-lang active">NL</button>
+            <button id="btnEN" class="btn btn-lang">EN</button>
+            <button id="startBtn" class="btn btn-start">Start intro</button>
+        </div>
+    </header>
+
+    <!-- Typend intro -->
+    <div id="typedText" class="typed-text"></div>
+
+
+    <!-- Werkervaring per bedrijf -->
+    <section id="experienceSection" class="info-section">
+        <h2 id="expTitle"></h2>
+        <div id="experienceList"></div>
+    </section>
+
+     <!-- Opleidingen blok -->
+    <section id="educationSection" class="info-section">
+        <h2 id="eduTitle"></h2>
+        <div id="educationContent"></div>
+    </section>
+
+    <!-- JA / NEE contactvraag -->
+    <div id="conversationBlock">
+        <strong>Wil je met mij in gesprek?</strong><br><br>
+        <button id="yesBtn" class="btn btn-start">Ja</button>
+        <button id="noBtn" class="btn" style="background:#ffffff;border:1px solid #d1d5db;">Nee</button>
+    </div>
+
+    <!-- Contactgegevens -->
+    <div id="contactInfo">
+        <strong>Contactinfo</strong><br><br>
+        📍 Heerenveen<br>
+        📞 06-42137352<br>
+        📧 <a href="mailto:milena@helloworldrecruitment.nl">milena@helloworldrecruimtent.nl</a>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+let currentLanguage = "nl";
+
+// Intro-tekst NL
+const introNL =
+"Welkom! \n\nGraag neem ik je mee in mijn CV.\n\n" +
+"Mijn naam is Milena Tjalsma-Otten.\n\n" +
+"<strong>Recruiter &amp; Talent Acquisition Specialist</strong> met sterke ervaring in Cyber Security, Tech, IT en niche recruitment.\n" +
+"Ruime achtergrond in leidinggeven, klantcontact, operations en internationale samenwerkingen.\n" + 
+"Tot 1 april 2026 was ik in vaste dienst bij KPN.\n" + 
+"Hiernaast ben ik in 2024 ook al gedeeltelijk als freelance sourcer aan de slag gegaan.\n" +
+
+"Verder ben ik creatief, mensgericht, analytisch en gespecialiseerd in sourcing op moeilijk vindbare profielen.\n"+ 
+"De sourcingsopdracht bij Atabix sluit goed aan bij mijn kennis en ervaring, daarnaast ben ik per direct en flexibel inzetbaar voor de gevraagde uren.\n\n";
+
+// Intro-tekst EN
+const introEN =
+"Welcome! \n\nLet me walk you through my profile.\n\n" +
+"My name is Milena Tjalsma-Otten.\n\n" +
+"<strong>Recruiter &amp; Talent Acquisition Specialist</strong> with strong experience in Cyber Security, Tech, IT and niche recruitment.\n" +
+"Background in leadership, customer contact, operations and international collaboration.\n" +
+"Until April 1, 2026, I was permanently employed at KPN.\n" +
+"In addition, I already started working partly as a freelance sourcer in 2024.\n" +
+
+"Furthermore, I am creative, people-oriented, analytical, and specialized in sourcing hard-to-find profiles.\n" +
+"The sourcing assignment at Atabix aligns well with my knowledge and experience, and I am immediately and flexibly available for the requested hours.\n\n";
+
+
+// Werkervaring NL (nieuw → oud, recruiter bovenaan)
+const experienceNL = [
+    {
+        period:"01-01-2024 – heden",
+        title:"Freelance Recruiter &amp; Sourcer",
+        company:"Hello World Recruitment NL · Remote",
+        desc:"Freelance sourcing en recruitment voor MKB- en corporate organisaties. Focus op nicheprofielen, 360° recruitment, kandidaatbeleving en advisering van hiring managers."
+    },
+    {
+        period:"01-01-2023 – 04-2026",
+        title:"Cyber Security &amp; Tech Recruiter",
+        company:"KPN Talent Acquisition Center · Nederland (hybride)",
+        desc:"Verantwoordelijk voor het aantrekken van cyber security- en tech-professionals. Sourcing, selectie, stakeholdermanagement en het bouwen aan een sterke talentpijplijn binnen een complexe, technische omgeving."
+    },
+    {
+        period:"2021 – 2023",
+        title:"Corporate Recruiter IT",
+        company:"KPN · Nederland (hybride)",
+        desc:"End-to-end recruitment voor IT-profielen. Samenwerken met hiring managers, opstellen van profielen, voeren van interviews en bewaken van een prettige candidate experience."
+    },
+    {
+        period:"2020 – 2021",
+        title:"Vakmanager Collections",
+        company:"KPN · Groningen",
+        desc:"Leidinggeven aan een Collections-team binnen de consumentenmarkt. HR-taken, coachen van medewerkers en continu verbeteren op processen en klantreizen."
+    },
+    {
+        period:"2017 – 2020",
+        title:"Teamleider Service Mobiel &amp; WeChatGo",
+        company:"KPN · Groningen",
+        desc:"Leidinggeven aan een eerstelijns servicedesk voor mobiele telefonie, hotspots en WeChatGo-klanten. Team zelfredzaam maken, continu verbeteren en coachen op klantgesprekken."
+    },
+    {
+        period:"2016 – 2017",
+        title:"Teamleider ServiceDesk Nabestaanden",
+        company:"KPN · Groningen",
+        desc:"Verantwoordelijk voor een team dat nabestaanden helpt bij het afhandelen van telecomzaken. Aandacht voor empathie, duidelijke communicatie en procesverbetering."
+    },
+    {
+        period:"2014 – 2015",
+        title:"Supervisor Save",
+        company:"KPN",
+        desc:"Aansturen van een Save-team met focus op retentie, klantbehoud en commerciële kansen binnen bestaande klantrelaties."
+    },
+    {
+        period:"2013 – 2014",
+        title:"Service Desk Supervisor Internetapplicaties",
+        company:"Friesland Bank",
+        desc:"Coördinatie van betalingen, sparen en verzekeringen. Procesverbetering voor klantacceptatie en beheersing van internetapplicaties, inclusief klachtenafhandeling."
+    },
+    {
+        period:"2013",
+        title:"Teamleider Verkoop &amp; Service",
+        company:"Rabobank Leeuwarden-Noordwest Friesland",
+        desc:"Leidinggeven aan een frontoffice-team voor verkoop- en serviceactiviteiten. Focus op klantbediening, commerciële resultaten en teamcoaching."
+    },
+    {
+        period:"2007 – 2009",
+        title:"Vestigingsmanager / Senior Bankier",
+        company:"Friesland Bank · Gorredijk",
+        desc:"Eindverantwoordelijk voor vestiging, commerciële doelstellingen, advies aan particuliere klanten en aansturing van medewerkers."
+    },
+    {
+        period:"2005 – 2007",
+        title:"Detaspecialist Banken &amp; Verzekeringen",
+        company:"Welten · diverse locaties",
+        desc:"Detachering bij o.a. ABN AMRO op afdelingen schade, leven en hypotheken. Advisering van klanten over bank- en verzekeringsproducten."
+    }
+];
+
+// Werkervaring EN (idem, nieuw → oud)
+const experienceEN = [
+    {
+        period:"2024 – present",
+        title:"Freelance Recruiter &amp; Sourcer",
+        company:"Hello World Recruitment NL · Remote",
+        desc:"Freelance sourcing and recruitment for SME and corporate organisations. Focus on niche profiles, 360° recruitment, candidate experience and advising hiring managers."
+    },
+    {
+        period:"2023 – present",
+        title:"Cyber Security &amp; Tech Recruiter",
+        company:"KPN Talent Acquisition Center · Netherlands (hybrid)",
+        desc:"Responsible for attracting cyber security and tech professionals. Sourcing, selection, stakeholder management and building a strong talent pipeline in a complex technical environment."
+    },
+    {
+        period:"2021 – 2023",
+        title:"Corporate Recruiter IT",
+        company:"KPN · Netherlands (hybrid)",
+        desc:"End-to-end recruitment for IT roles. Working closely with hiring managers, defining profiles, conducting interviews and ensuring a strong candidate experience."
+    },
+    {
+        period:"2020 – 2021",
+        title:"Collections Lead (Vakmanager)",
+        company:"KPN · Groningen",
+        desc:"Leading a collections team in the consumer market. HR responsibilities, coaching team members and driving continuous improvement of processes and customer journeys."
+    },
+    {
+        period:"2017 – 2020",
+        title:"Team Lead Service Mobile &amp; WeChatGo",
+        company:"KPN · Groningen",
+        desc:"Managing a first line service desk for mobile telephony, hotspots and WeChatGo customers. Making the team self-sufficient, improving workflows and coaching on customer interactions."
+    },
+    {
+        period:"2016 – 2017",
+        title:"Team Lead Bereaved Service Desk",
+        company:"KPN · Groningen",
+        desc:"Responsible for a team supporting bereaved relatives with telecom arrangements. Focus on empathy, clarity and process improvements."
+    },
+    {
+        period:"2014 – 2015",
+        title:"Supervisor Save (Retention)",
+        company:"KPN",
+        desc:"Managing a retention team focused on customer loyalty, preventing churn and identifying commercial opportunities within the existing customer base."
+    },
+    {
+        period:"2013 – 2014",
+        title:"Service Desk Supervisor Internet Applications",
+        company:"Friesland Bank",
+        desc:"Coordinating payments, savings and insurance processes. Improving client acceptance processes and managing issues and complaints regarding online applications."
+    },
+    {
+        period:"2013",
+        title:"Team Lead Sales &amp; Service",
+        company:"Rabobank Leeuwarden-Noordwest Friesland",
+        desc:"Leading a front office team responsible for sales and service. Focus on customer experience, commercial targets and coaching team members."
+    },
+    {
+        period:"2007 – 2009",
+        title:"Branch Manager / Senior Banker",
+        company:"Friesland Bank · Gorredijk",
+        desc:"Responsible for branch performance, commercial results, advising private clients and leading the local team."
+    },
+    {
+        period:"2005 – 2007",
+        title:"Consultant Banking &amp; Insurance",
+        company:"Welten · various locations",
+        desc:"Seconded to ABN AMRO and other banks for insurance, mortgages and banking products. Advising clients and supporting front office operations."
+    }
+];
+
+// Opleidingen NL
+const educationNL = [
+    "2021 – Greenbelt theorie · ProjectsOne",
+    "2018 – heden – Programmeren in C# · Dirksen Thuisstudie",
+    "2018 – Javascript, HTML &amp; CSS Webdevelopment · Computrain Zwolle",
+    "Postdoctorale Leergang Customer Experience &amp; Multichannel Management · Beeckestijn Business School Leusden",
+    "2007–2008 – Personal Banking · NIBE-SVV Leeuwarden",
+    "2006 – Erkend Hypotheekadviseur (SEH) · NIBE-SVV Leeuwarden",
+    "1998–2002 – HEAO Commerciële Economie (NIMA A &amp; B) · NHL Leeuwarden"
+];
+
+// Opleidingen EN
+const educationEN = [
+    "2021 – Greenbelt theory · ProjectsOne",
+    "2018 – present – Programming in C# · Dirksen home study",
+    "2018 – Javascript, HTML &amp; CSS Webdevelopment · Computrain Zwolle",
+    "Postgraduate Customer Experience &amp; Multichannel Management · Beeckestijn Business School Leusden",
+    "2007–2008 – Personal Banking · NIBE-SVV Leeuwarden",
+    "2006 – Certified Mortgage Advisor (SEH) · NIBE-SVV Leeuwarden",
+    "1998–2002 – HEAO Commercial Economics (NIMA A &amp; B) · NHL Leeuwarden"
+];
+
+// Elementen
+const typedText          = document.getElementById("typedText");
+const startBtn           = document.getElementById("startBtn");
+const btnNL              = document.getElementById("btnNL");
+const btnEN              = document.getElementById("btnEN");
+const educationSection   = document.getElementById("educationSection");
+const educationContent   = document.getElementById("educationContent");
+const experienceSection  = document.getElementById("experienceSection");
+const experienceList     = document.getElementById("experienceList");
+const conversationBlock  = document.getElementById("conversationBlock");
+const contactInfo        = document.getElementById("contactInfo");
+const yesBtn             = document.getElementById("yesBtn");
+const noBtn              = document.getElementById("noBtn");
+
+// Taal-knoppen
+btnNL.addEventListener("click", () => {
+    currentLanguage = "nl";
+    btnNL.classList.add("active");
+    btnEN.classList.remove("active");
+});
+btnEN.addEventListener("click", () => {
+    currentLanguage = "en";
+    btnEN.classList.add("active");
+    btnNL.classList.remove("active");
+});
+
+// Start intro
+startBtn.addEventListener("click", () => {
+    // reset
+    typedText.style.display = "block";
+    typedText.innerHTML = "";
+    educationContent.innerHTML = "";
+    experienceList.innerHTML = "";
+    educationSection.classList.remove("visible");
+    experienceSection.classList.remove("visible");
+    conversationBlock.style.display = "none";
+    contactInfo.style.display = "none";
+    noBtn.style.opacity = 1;
+    noBtn.style.transform = "none";
+    noBtn.style.pointerEvents = "auto";
+
+    startTyping();
+});
+
+function startTyping(){
+    const fullText = currentLanguage === "nl" ? introNL : introEN;
+
+    let i   = 0;
+    let buf = "";
+    let tag = false;
+
+    const loop = setInterval(() => {
+        const ch = fullText[i];
+
+        if (ch === "<") tag = true;
+        if (ch === ">") tag = false;
+
+        buf += ch;
+        typedText.innerHTML = buf;
+
+        i++;
+        if (i >= fullText.length){
+            clearInterval(loop);
+            showEducationAndExperience();
+        }
+    }, 40);
+}
+
+function showEducationAndExperience(){
+    // Set correct titles based on language
+document.getElementById("eduTitle").innerHTML =
+    currentLanguage === "nl" ? "Opleiding" : "Education";
+
+document.getElementById("expTitle").innerHTML =
+    currentLanguage === "nl" ? "Werkervaring" : "Work Experience";
+
+    const eduItems = currentLanguage === "nl" ? educationNL : educationEN;
+    const expItems = currentLanguage === "nl" ? experienceNL : experienceEN;
+
+    // Opleidingen vullen
+    eduItems.forEach(line => {
+        const div = document.createElement("div");
+        div.className = "edu-item";
+        div.innerHTML = "• " + line;
+        educationContent.appendChild(div);
+    });
+    educationSection.classList.add("visible");
+
+    // Werkervaring kaarten opbouwen
+    expItems.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "exp-card";
+        card.innerHTML =
+            "<div class='exp-period'>" + item.period + "</div>" +
+            "<div class='exp-title'>" + item.title + "</div>" +
+            "<div class='exp-company'>" + item.company + "</div>" +
+            "<div class='exp-desc'>" + item.desc + "</div>";
+        experienceList.appendChild(card);
+    });
+    experienceSection.classList.add("visible");
+
+    // Kaarten één voor één laten inschuiven
+    const cards = document.querySelectorAll(".exp-card");
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add("visible");
+        }, 400 + index * 350);
+    });
+
+   // Na laatste kaart: JA/NEE tonen
+const totalDelay = 400 + cards.length * 350 + 300;
+setTimeout(() => {
+
+    // Toon JA/NEE in juiste taal
+    if (currentLanguage === "nl") {
+        conversationBlock.innerHTML = `
+            Wil je met mij in gesprek?<br><br>
+            <button id="yesBtnDyn" class="btn btn-start">Ja</button>
+            <button id="noBtnDyn" class="btn" style="background:#fff;border:1px solid #ccc">Nee</button>
+        `;
+    } else {
+        conversationBlock.innerHTML = `
+            Would you like to talk to me?<br><br>
+            <button id="yesBtnDyn" class="btn btn-start">Yes</button>
+            <button id="noBtnDyn" class="btn" style="background:#fff;border:1px solid #ccc">No</button>
+        `;
+    }
+
+    conversationBlock.style.display = "block";
+
+    // knoppen opnieuw koppelen
+    const yesBtnDyn = document.getElementById("yesBtnDyn");
+    const noBtnDyn  = document.getElementById("noBtnDyn");
+
+    yesBtnDyn.addEventListener("click", () => {
+        contactInfo.style.display = "block";
+        document.getElementById("downloadCV").style.display = "inline-block";
+        launchConfetti();
+    });
+
+    noBtnDyn.addEventListener("mouseover", () => {
+        noBtnDyn.style.opacity = 0;
+        noBtnDyn.style.transform = "scale(.4) rotate(10deg)";
+        noBtnDyn.style.pointerEvents = "none";
+    });
+
+}, totalDelay);
+
+}
+
+// JA → contact tonen + confetti + scroll
+yesBtn.addEventListener("click", () => {
+    contactInfo.style.display = "block";
+    launchConfetti();
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+});
+
+// NEE → vlucht weg bij hover
+noBtn.addEventListener("mouseover", function(){
+    this.style.opacity = 0;
+    this.style.transform = "scale(.3) rotate(18deg)";
+    this.style.pointerEvents = "none";
+    this.style.transition = ".25s";
+});
+
+// Confetti animatie
+function launchConfetti(){
+    for(let i = 0; i < 40; i++){
+        const el = document.createElement("div");
+        el.innerHTML = "🍀";
+        el.style.position = "fixed";
+        el.style.top = (Math.random() * 90) + "vh";
+        el.style.left = "-80px";
+        el.style.fontSize = "40px"; /* GROTER */
+        el.style.zIndex = 99999;
+        el.style.opacity = 1;
+        el.style.transition = "transform 3s ease-out, opacity 3s ease-out";
+        document.body.appendChild(el);
+
+        setTimeout(() => {
+            el.style.transform = `translateX(${window.innerWidth + 200}px) rotate(${Math.random()*360}deg)`;
+            el.style.opacity = 0;
+        }, 50);
+
+        setTimeout(() => el.remove(), 3000);
+    }
+}
+
+    
+</script>
+
+</body>
+</html>
